@@ -1,5 +1,25 @@
 steps:
-  - label: ":nix: Test Nix in Container"
+  - label: ":nix: Test Nix in Container (default-test)"
+    agents:
+      queue: "default-test"
+    plugins:
+      - docker#v5.11.0:
+          image: "nixos/nix"
+          command:
+            - sh
+            - -c
+            - |
+              echo "--- Checking Nix version"
+              nix --version
+
+              echo "--- Testing basic Nix evaluation"
+              nix eval --expr '1 + 1'
+
+              echo "✅ Nix container works!"
+
+  - label: ":nix: Test Nix in Container (graviton-test)"
+    agents:
+      queue: "graviton-test"
     plugins:
       - docker#v5.11.0:
           image: "nixos/nix"
