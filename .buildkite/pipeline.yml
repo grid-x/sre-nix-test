@@ -3,6 +3,9 @@ steps:
     agents:
       queue: "default-test"
     command: |
+      echo "--- Sourcing Nix environment"
+      source /nix/var/nix/profiles/default/etc/profile.d/nix.sh
+
       echo "--- Checking if Nix is available"
       which nix
 
@@ -18,6 +21,9 @@ steps:
     agents:
       queue: "graviton-test"
     command: |
+      echo "--- Sourcing Nix environment"
+      source /nix/var/nix/profiles/default/etc/profile.d/nix.sh
+
       echo "--- Checking if Nix is available"
       which nix
 
