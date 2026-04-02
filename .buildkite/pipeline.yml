@@ -1,36 +1,30 @@
 steps:
-  - label: ":nix: Test Nix in Container (default-test)"
+  - label: ":nix: Test Nix Installation (default-test)"
     agents:
       queue: "default-test"
-    plugins:
-      - docker#v5.11.0:
-          image: "nixos/nix"
-          command:
-            - sh
-            - -c
-            - |
-              echo "--- Checking Nix version"
-              nix --version
+    command: |
+      echo "--- Checking if Nix is available"
+      which nix
 
-              echo "--- Testing basic Nix evaluation"
-              nix eval --expr '1 + 1'
+      echo "--- Checking Nix version"
+      nix --version
 
-              echo "✅ Nix container works!"
+      echo "--- Testing basic Nix evaluation"
+      nix eval --expr '1 + 1'
 
-  - label: ":nix: Test Nix in Container (graviton-test)"
+      echo "✅ Nix is installed and working!"
+
+  - label: ":nix: Test Nix Installation (graviton-test)"
     agents:
       queue: "graviton-test"
-    plugins:
-      - docker#v5.11.0:
-          image: "nixos/nix"
-          command:
-            - sh
-            - -c
-            - |
-              echo "--- Checking Nix version"
-              nix --version
+    command: |
+      echo "--- Checking if Nix is available"
+      which nix
 
-              echo "--- Testing basic Nix evaluation"
-              nix eval --expr '1 + 1'
+      echo "--- Checking Nix version"
+      nix --version
 
-              echo "✅ Nix container works!"
+      echo "--- Testing basic Nix evaluation"
+      nix eval --expr '1 + 1'
+
+      echo "✅ Nix is installed and working!"
